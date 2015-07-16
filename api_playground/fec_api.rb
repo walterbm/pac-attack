@@ -9,4 +9,4 @@ api_request ="https://api.open.fec.gov/v1/names/candidates?api_key=#{FEC_API_KEY
 api_response = open(api_request).read
 json_result = JSON.parse(api_response)
 
-# FEC_API does not support requesting for individual donations!
+# FEC_API does not support requests for individual donations!
