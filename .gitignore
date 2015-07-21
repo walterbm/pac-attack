@@ -1,1 +1,3 @@
 api_playground/keys.rb
+# Ignore application configuration
+/config/application.yml
