@@ -2,11 +2,9 @@ class Committee
   FEC_API_KEY = ENV["fec_key"]
   @@all = []
 
-  def self.candidate_committees(candidate_id)
-    api_request = "https://api.open.fec.gov/v1/candidate/#{candidate_id}/committees?api_key=#{FEC_API_KEY}&sort_hide_null=true&sort=name&per_page=100&page=1"
-    api_response = open(api_request).read
-    results = JSON.parse(api_response)["results"]
-
+  def self.for(candidate_id)
+    results = FEC.request("candidate/#{candidate_id}/committees?api_key=#{FEC_API_KEY}&sort_hide_null=true&sort=name&per_page=100&page=1")
+  
     results.each do |committee_attributes|
       self.new(committee_attributes)
     end
@@ -24,9 +22,8 @@ class Committee
   end
 
   def money
-    api_request = "https://api.open.fec.gov/v1/committee/#{self.committee_id}/reports?api_key=#{FEC_API_KEY}&sort_hide_null=true&sort=-coverage_end_date&per_page=1&page=1"
-    api_response = open(api_request).read
-    results = JSON.parse(api_response)["results"]
+    results = FEC.request("committee/#{self.committee_id}/reports?api_key=#{FEC_API_KEY}&sort_hide_null=true&sort=-coverage_end_date&per_page=1&page=1")
+    
     if results.empty? || results.first["total_disbursements_ytd"].nil?
       0
     else
@@ -35,9 +32,8 @@ class Committee
   end
 
   def donors       
-    api_request = "https://api.open.fec.gov/v1/committee/#{self.committee_id}/schedules/schedule_a/by_contributor?api_key=#{FEC_API_KEY}&sort_hide_null=true&sort=total&per_page=50&page=1"
-    api_response = open(api_request).read
-    results = JSON.parse(api_response)["results"]
+    results = FEC.request("committee/#{self.committee_id}/schedules/schedule_a/by_contributor?api_key=#{FEC_API_KEY}&sort_hide_null=true&sort=total&per_page=50&page=1")
+    
     results.collect do |record|
       {record["contributor_id"] => {donor_name: record["contributor_name"], donation_total: record["total"]} }
     end

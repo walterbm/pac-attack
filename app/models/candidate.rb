@@ -2,11 +2,12 @@ class Candidate
   FEC_API_KEY = ENV["fec_key"]
   @@all = []
 
+  def committees
+    Committee.for(self.candidate_id)
+  end
+
   def self.search(name)
-    # Currently limited to presidential candidates only!
-    api_request = "https://api.open.fec.gov/v1/candidates/search?api_key=#{FEC_API_KEY}&office=P&name=#{name}&per_page=100&page=1"
-    api_response = open(api_request).read
-    results = JSON.parse(api_response)["results"]
+    results = FEC.request("candidates/search?api_key=#{FEC_API_KEY}&office=P&name=#{name}&per_page=100&page=1")
 
     results.each do |candidate_attributes|
       self.new(candidate_attributes)
