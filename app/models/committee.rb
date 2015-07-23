@@ -4,11 +4,9 @@ class Committee
 
   def self.for(candidate_id)
     results = FEC.request("candidate/#{candidate_id}/committees?api_key=#{FEC_API_KEY}&sort_hide_null=true&sort=name&per_page=100&page=1")
-  
-    results.each do |committee_attributes|
+    results.collect do |committee_attributes|
       self.new(committee_attributes)
     end
-    @@all
   end
 
   def initialize(committee_attributes)
