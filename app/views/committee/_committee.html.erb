@@ -1,3 +1,3 @@
 <li>
-  <%= committee.name %> : $<%= committee.money %>
+  <%= link_to committee.name, committee_path(committee.committee_id) %> : $<%= committee.money %>
 </li>

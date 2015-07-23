@@ -9,6 +9,10 @@ class Committee
     end
   end
 
+  def self.find(committee_id)
+    # add API request
+  end
+
   def initialize(committee_attributes)
     committee_attributes.each do |attribute, value|
       if value
@@ -22,18 +26,14 @@ class Committee
   def money
     results = FEC.request("committee/#{self.committee_id}/reports?api_key=#{FEC_API_KEY}&sort_hide_null=true&sort=-coverage_end_date&per_page=1&page=1")
     
-    if results.empty? || results.first["total_disbursements_ytd"].nil?
-      0
-    else
-      results.first["total_disbursements_ytd"]
-    end
+    (results.empty? || results.first["total_disbursements_ytd"].nil?) ? 0 : results.first["total_disbursements_ytd"]
   end
 
   def donors       
     results = FEC.request("committee/#{self.committee_id}/schedules/schedule_a/by_contributor?api_key=#{FEC_API_KEY}&sort_hide_null=true&sort=total&per_page=50&page=1")
-    
+    donor = Struct.new(:contributor_id, :name, :total)
     results.collect do |record|
-      {record["contributor_id"] => {donor_name: record["contributor_name"], donation_total: record["total"]} }
+      donor.new(record["contributor_id"],record["contributor_name"],record["total"])
     end
   end
 
