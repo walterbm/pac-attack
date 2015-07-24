@@ -5,13 +5,14 @@ class CommitteeController < ApplicationController
   end
 
   def show
-    raise "feature not ready".inspect
-    # @committee = Committee.find(committee_params)
+    stub_committee = Committee.new(committee_id: committee_params)
+    @donors = stub_committee.donors
+    raise "add the view".inspect
   end
 
   private
-  def committee_params
-    params[:id]
-  end
+    def committee_params
+      params[:id]
+    end
 
 end

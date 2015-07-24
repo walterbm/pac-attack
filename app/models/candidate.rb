@@ -7,11 +7,9 @@ class Candidate
   end
 
   def self.search(name)
-    unless name.empty?
-      results = FEC.request("candidates/search?api_key=#{FEC_API_KEY}&office=P&name=#{name}&per_page=100&page=1")
-      results.collect do |candidate_attributes|
-        self.new(candidate_attributes)
-      end
+    results = FEC.request("candidates/search?api_key=#{FEC_API_KEY}&office=P&name=#{name}&per_page=100&page=1")
+    results.collect do |candidate_attributes|
+      self.new(candidate_attributes)
     end
   end
 

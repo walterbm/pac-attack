@@ -1,7 +1,11 @@
 class CandidateController < ApplicationController
 
   def index
-    @candidates = Candidate.search(candidate_params)
+    if candidate_params.empty?
+      render "welcome/index"
+    else
+      @candidates = Candidate.search(candidate_params)
+    end
   end
 
   private

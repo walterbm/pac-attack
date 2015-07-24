@@ -9,10 +9,6 @@ class Committee
     end
   end
 
-  def self.find(committee_id)
-    # add API request
-  end
-
   def initialize(committee_attributes)
     committee_attributes.each do |attribute, value|
       if value
