@@ -3596,3 +3596,71 @@ ArgumentError (wrong number of arguments (0 for 1)):
 Started GET "/committees/C00431445" for ::1 at 2015-07-23 20:20:04 -0400
 Processing by CommitteeController#show as HTML
   Parameters: {"id"=>"C00431445"}
+
+
+Started GET "/" for ::1 at 2015-07-24 11:43:30 -0400
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 198ms (Views: 186.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/candidates?utf8=%E2%9C%93&query=Obam&commit=Search" for ::1 at 2015-07-24 11:43:34 -0400
+Processing by CandidateController#index as HTML
+  Parameters: {"utf8"=>"✓", "query"=>"Obam", "commit"=>"Search"}
+  Rendered candidate/_candidate.html.erb (1.0ms)
+  Rendered candidate/index.html.erb within layouts/application (6.8ms)
+Completed 200 OK in 743ms (Views: 39.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/candidates/P80003338/committees" for ::1 at 2015-07-24 11:43:36 -0400
+Processing by CommitteeController#index as HTML
+  Parameters: {"id"=>"P80003338"}
+  Rendered committee/_committee.html.erb (9075.8ms)
+  Rendered committee/index.html.erb within layouts/application (9078.1ms)
+Completed 200 OK in 9381ms (Views: 9114.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/committees/C00431445" for ::1 at 2015-07-24 11:48:44 -0400
+Processing by CommitteeController#show as HTML
+  Parameters: {"id"=>"C00431445"}
+Completed 500 Internal Server Error in 786ms (ActiveRecord: 0.0ms)
+
+RuntimeError ("add the view"):
+  app/controllers/committee_controller.rb:10:in `show'
+
+
+  Rendered /Users/WBM/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.3/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.6ms)
+  Rendered /Users/WBM/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.8ms)
+  Rendered /Users/WBM/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /Users/WBM/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (49.4ms)
+  Rendered /Users/WBM/.rvm/gems/ruby-2.2.1/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /Users/WBM/.rvm/gems/ruby-2.2.1/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/WBM/.rvm/gems/ruby-2.2.1/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (2.9ms)
+  Rendered /Users/WBM/.rvm/gems/ruby-2.2.1/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/WBM/.rvm/gems/ruby-2.2.1/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (50.1ms)
+  Rendered /Users/WBM/.rvm/gems/ruby-2.2.1/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/WBM/.rvm/gems/ruby-2.2.1/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/WBM/.rvm/gems/ruby-2.2.1/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (100.9ms)
+
+
+Started GET "/committees/C00431445" for ::1 at 2015-07-24 11:48:45 -0400
+Processing by CommitteeController#show as HTML
+  Parameters: {"id"=>"C00431445"}
+Completed 500 Internal Server Error in 187ms (ActiveRecord: 0.0ms)
+
+RuntimeError ("add the view"):
+  app/controllers/committee_controller.rb:10:in `show'
+
+
+  Rendered /Users/WBM/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.3/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.0ms)
+  Rendered /Users/WBM/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (9.3ms)
+  Rendered /Users/WBM/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /Users/WBM/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (55.2ms)
+  Rendered /Users/WBM/.rvm/gems/ruby-2.2.1/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /Users/WBM/.rvm/gems/ruby-2.2.1/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/WBM/.rvm/gems/ruby-2.2.1/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/WBM/.rvm/gems/ruby-2.2.1/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/WBM/.rvm/gems/ruby-2.2.1/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (44.9ms)
+  Rendered /Users/WBM/.rvm/gems/ruby-2.2.1/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/WBM/.rvm/gems/ruby-2.2.1/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/WBM/.rvm/gems/ruby-2.2.1/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (93.5ms)

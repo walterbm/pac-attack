@@ -7,7 +7,6 @@ class CommitteeController < ApplicationController
   def show
     stub_committee = Committee.new(committee_id: committee_params)
     @donors = stub_committee.donors
-    raise "add the view".inspect
   end
 
   private

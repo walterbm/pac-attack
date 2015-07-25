@@ -21,5 +21,9 @@ class Candidate
     @@all << self
   end
 
+  def generate_d3_hash
+    
+  end
+
 end
 
