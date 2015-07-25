@@ -1,6 +1,5 @@
 class Committee
   FEC_API_KEY = ENV["fec_key"]
-  @@all = []
 
   def self.for(candidate_id)
     results = FEC.request("candidate/#{candidate_id}/committees?api_key=#{FEC_API_KEY}&sort_hide_null=true&sort=name&per_page=100&page=1")
@@ -16,13 +15,12 @@ class Committee
         self.send("#{attribute}=", value)
       end
     end
-    @@all << self
   end
 
   def money
     results = FEC.request("committee/#{self.committee_id}/reports?api_key=#{FEC_API_KEY}&sort_hide_null=true&sort=-coverage_end_date&per_page=1&page=1")
     
-    (results.empty? || results.first["total_disbursements_ytd"].nil?) ? 0 : results.first["total_disbursements_ytd"]
+    (results.empty? || results.first["total_disbursements_ytd"].nil?) ? 0 : results.first["total_disbursements_ytd"].abs 
   end
 
   def donors       

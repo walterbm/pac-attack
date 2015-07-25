@@ -1,9 +1,11 @@
-<div class="col-md-12 jumbotron">
-  <h1>Search</h1>
-  <%= form_tag("/candidates", method: 'get', class: "form-group") do %>
-    <div class="input-group">
-      <%= text_field_tag(:query, "search for presidental candidate", class: "form-control") %>
-      <span class = "input-group-btn"><%= submit_tag("Search", class: "btn btn-primary") %></span>
-    </div>
-  <% end %>
+<div id="home-bg">
+  <div class="col-lg-12">
+    <h1>Search</h1>
+    <%= form_tag("/candidates", method: 'get', class: "form-group") do %>
+      <div class="input-group">
+        <%= text_field_tag(:query, "search for presidental candidate", class: "form-control") %>
+        <span class = "input-group-btn"><%= submit_tag("Search", class: "btn btn-primary") %></span>
+      </div>
+    <% end %>
+  </div>
 </div>

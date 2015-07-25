@@ -1,4 +1,14 @@
-<li>
-  <%= link_to candidate.name, candidate_path(candidate.candidate_id) %>
-  <%= image_tag(candidate.image_url, height: '32', width: '32') %>
-</li>
+<div class="panel panel-<%= candidate.party_color %>">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= link_to candidate.name, candidate_path(candidate.candidate_id) %></h3>
+  </div>
+  <div class="panel-body">
+    <%= image_tag(candidate.image_url, height: '256', class: "col-md-3") %>
+    <ul class="col-md-9">
+    <li>Name: <%= candidate.pretty_print_name %></li>
+    <li>Political Party: <%= candidate.party_full %></li>
+    <li>Election Years: <%= candidate.election_years.to_s %></li>
+    <li>FEC ID: <%= candidate.candidate_id %></li>
+    </ul>
+  </div>
+</div>

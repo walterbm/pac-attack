@@ -4,10 +4,9 @@ class CandidateController < ApplicationController
   end
 
   def index
-    if candidate_params.empty?
-      render "welcome/index"
-    else
-      @candidates = Candidate.search(candidate_params)
+    @candidates = Candidate.search(candidate_params)
+    if candidate_params.empty? || @candidates.empty?
+      render :search
     end
   end
 

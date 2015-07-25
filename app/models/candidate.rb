@@ -1,8 +1,5 @@
 class Candidate
   FEC_API_KEY = ENV["fec_key"]
-  @@all = []
-
-  attr_accessor :image_url
 
   def committees
     Committee.for(self.candidate_id)
@@ -25,8 +22,29 @@ class Candidate
       self.class.send(:attr_accessor, "#{attribute}")
       self.send("#{attribute}=", value)
     end
-    self.image_url = Google::Search::Image.new(:query => self.name).first.uri
-    @@all << self
+  end
+
+  def image_url
+    Google::Search::Image.new(:query => "#{self.pretty_print_name} #{self.election_years.last}").first.uri
+  end
+
+  def pretty_print_name
+    name = self.name.split(', ') 
+    "#{name.last.capitalize} #{name.first.capitalize}"
+  end
+
+  def party_color
+    party_colors = {
+      "DEM" => "primary",
+      "REP" => "danger",
+      "IND" => "warning",
+      "GRE" => "success",
+    }
+    if party_colors.has_key?(self.party)
+      party_colors[self.party]
+    else
+      "default"
+    end
   end
 
   def d3_hash
@@ -40,10 +58,11 @@ class Candidate
 
     def prepared_committees
       self.committees.collect do |committee|
-        {
-          name: committee.name,
-          children: prepared_donors(committee)
-        }
+        donors = prepared_donors(committee)
+        Hash.new.tap do |hash|
+          hash[:name] = "#{committee.name} | $#{committee.money}"
+          donors.empty? ? hash[:size] = committee.money : hash[:children] = donors
+        end
       end
     end
 
