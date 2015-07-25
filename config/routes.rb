@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get "candidates/:id" => "candidate#show", as: :candidate_json
   get "candidates/:id/committees" => "committee#index", as: :candidate
   get "committees/:id" => "committee#show", as: :committee
+  get "d3" => "d3#index"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
