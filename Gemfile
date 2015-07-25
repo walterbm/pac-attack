@@ -35,6 +35,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use to store API keys
 gem "figaro"
 
+gem "google-search"
+
 group :development, :test do
   gem 'pry-byebug'
   gem 'rspec-rails', '~> 3.0'

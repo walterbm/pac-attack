@@ -2,6 +2,8 @@ class Candidate
   FEC_API_KEY = ENV["fec_key"]
   @@all = []
 
+  attr_accessor :image_url
+
   def committees
     Committee.for(self.candidate_id)
   end
@@ -23,6 +25,7 @@ class Candidate
       self.class.send(:attr_accessor, "#{attribute}")
       self.send("#{attribute}=", value)
     end
+    self.image_url = Google::Search::Image.new(:query => self.name).first.uri
     @@all << self
   end
 
