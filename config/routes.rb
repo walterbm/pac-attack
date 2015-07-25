@@ -2,8 +2,9 @@ Rails.application.routes.draw do
 
   root "welcome#index"
   get "candidates" => "candidate#index"
-  get "candidates/:id" => "candidate#show", as: :candidate_json
-  get "candidates/:id/committees" => "committee#index", as: :candidate
+  get "candidates/:id" => "candidate#show", as: :candidate
+  get "candidates/:id/d3.json" => "candidate#d3_json", as: :candidate_d3_json
+  get "candidates/:id/committees" => "committee#index"
   get "committees/:id" => "committee#show", as: :committee
   get "d3" => "d3#index"
 
