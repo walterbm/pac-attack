@@ -1,5 +1,8 @@
 class CandidateController < ApplicationController
 
+  def search
+  end
+
   def index
     if candidate_params.empty?
       render "welcome/index"

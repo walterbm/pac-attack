@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root "welcome#index"
+  root "candidate#search"
   get "candidates" => "candidate#index"
   get "candidates/:id" => "candidate#show", as: :candidate
   get "candidates/:id/d3.json" => "candidate#d3_json", as: :candidate_d3_json
