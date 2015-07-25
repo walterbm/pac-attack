@@ -13,6 +13,11 @@ class Candidate
     end
   end
 
+  def self.find(fec_id)
+    candidate_attributes = FEC.request("candidate/#{fec_id}?api_key=#{FEC_API_KEY}&sort=-expire_date&sort_hide_null=false&page=1&per_page=20")
+    self.new(candidate_attributes.first)
+  end
+
   def initialize(candidate_attributes)
     candidate_attributes.each do |attribute, value|
       self.class.send(:attr_accessor, "#{attribute}")
