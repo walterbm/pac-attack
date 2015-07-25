@@ -26,9 +26,32 @@ class Candidate
     @@all << self
   end
 
-  def generate_d3_hash
-    
+  def d3_hash
+    {
+      name: self.name,
+      children: prepared_committees
+    }
   end
+
+  private
+
+    def prepared_committees
+      self.committees.collect do |committee|
+        {
+          name: committee.name,
+          children: prepared_donors(committee)
+        }
+      end
+    end
+
+    def prepared_donors(committee)
+      committee.donors.map do |donor| 
+        {
+          name: donor.name,
+          size: donor.total
+        }
+      end
+    end
 
 end
 
