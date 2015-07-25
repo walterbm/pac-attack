@@ -4,4 +4,4 @@ api_playground/keys.rb
 
 *.log
 
-tmp/tmp
+/tmp
