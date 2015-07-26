@@ -11,7 +11,7 @@ class CandidateController < ApplicationController
   end
 
   def show
-    @candidate_id = params[:id]
+    @candidate = Candidate.find(params[:id])
   end
 
   def d3_json

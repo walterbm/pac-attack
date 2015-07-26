@@ -5,7 +5,7 @@ var margin = 20,
 
 var color = d3.scale.linear()
     .domain([-1, 5])
-    .range(["hsl(152,80%,80%)", "hsl(228,30%,40%)"])
+    .range(["<%= @candidate.d3_colors.first %>", "<%= @candidate.d3_colors.last %>"])
     .interpolate(d3.interpolateHcl);
 
 var pack = d3.layout.pack()
@@ -19,7 +19,7 @@ var svg = d3.select("body").append("svg")
   .append("g")
     .attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
 
-d3.json("<%= @candidate_id %>/d3.json", function(error, root) {
+d3.json("<%= @candidate.candidate_id %>/d3.json", function(error, root) {
   if (error) throw error;
 
   var focus = root,

@@ -38,13 +38,26 @@ class Candidate
       "DEM" => "primary",
       "REP" => "danger",
       "IND" => "warning",
-      "GRE" => "success",
+      "GRE" => "success"
     }
     if party_colors.has_key?(self.party)
       party_colors[self.party]
     else
       "default"
     end
+  end
+
+  def d3_colors
+    party_colors = {
+      "DEM" => ["rgb(0,137,255)", "rgb(30,60,130)"],
+      "REP" => ["rgb(255,64,0)", "rgb(130,10,24)"]
+    }
+    if party_colors.has_key?(self.party)
+      party_colors[self.party]
+    else
+      ["hsl(152,80%,80%)", "hsl(228,30%,40%)"]
+    end
+
   end
 
   def d3_hash

@@ -5,13 +5,13 @@ var margin = 20,
 
 var color = d3.scale.linear()
     .domain([-1, 5])
-    .range(["hsl(152,80%,80%)", "hsl(228,30%,40%)"])
+    .range(["rgb(0,137,255)", "rgb(30,60,130)"])
     .interpolate(d3.interpolateHcl);
 
 var pack = d3.layout.pack()
     .padding(2)
     .size([diameter - margin, diameter - margin])
-    .value(function(d) { return d.size; })
+    .value(function(d) { return d.size; });
 
 var svg = d3.select("body").append("svg")
     .attr("width", diameter)

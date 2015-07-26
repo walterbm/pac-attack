@@ -19,7 +19,6 @@ class Committee
 
   def money
     results = FEC.request("committee/#{self.committee_id}/reports?api_key=#{FEC_API_KEY}&sort_hide_null=true&sort=-coverage_end_date&per_page=1&page=1")
-    
     (results.empty? || results.first["total_disbursements_ytd"].nil?) ? 0 : results.first["total_disbursements_ytd"].abs 
   end
 
