@@ -1,7 +1,10 @@
+<h2>Obama</h2>
+<div id="d3-graphic"></div>
 <script>
 
 var margin = 20,
-    diameter = 960;
+    diameter = 700, 
+    screenWidth = $("body").width();
 
 var color = d3.scale.linear()
     .domain([-1, 5])
@@ -13,11 +16,11 @@ var pack = d3.layout.pack()
     .size([diameter - margin, diameter - margin])
     .value(function(d) { return d.size; });
 
-var svg = d3.select("body").append("svg")
-    .attr("width", diameter)
+var svg = d3.select("div#d3-graphic").append("svg")
+    .attr("width", screenWidth)
     .attr("height", diameter)
   .append("g")
-    .attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
+    .attr("transform", "translate(" + screenWidth / 2 + "," + diameter / 2 + ")");
 
 d3.json("assets/flare.json", function(error, root) {
   if (error) throw error;
@@ -43,7 +46,7 @@ d3.json("assets/flare.json", function(error, root) {
 
   var node = svg.selectAll("circle,text");
 
-  d3.select("body")
+  d3.select("div#d3-graphic")
       .style("background", color(-1))
       .on("click", function() { zoom(root); });
 

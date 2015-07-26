@@ -5,10 +5,10 @@
   <div class="panel-body">
     <%= image_tag(candidate.image_url, height: '256', class: "col-md-3") %>
     <ul class="col-md-9">
-    <li>Name: <%= candidate.pretty_print_name %></li>
-    <li>Political Party: <%= candidate.party_full %></li>
-    <li>Election Years: <%= candidate.election_years.to_s %></li>
-    <li>FEC ID: <%= candidate.candidate_id %></li>
+      <li>Name: <%= candidate.pretty_print_name %></li>
+      <li>Political Party: <%= candidate.party_full %></li>
+      <li>Election Years: <%= candidate.election_years.to_s %></li>
+      <li>FEC ID: <%= candidate.candidate_id %></li>
     </ul>
   </div>
 </div>
