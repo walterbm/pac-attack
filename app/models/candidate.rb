@@ -1,19 +1,18 @@
 class Candidate
-  FEC_API_KEY = ENV["fec_key"]
 
   def committees
     Committee.for(self.candidate_id)
   end
 
   def self.search(name)
-    results = FEC.request("candidates/search?api_key=#{FEC_API_KEY}&office=P&name=#{name}&per_page=100&page=1")
+    results = FEC.candidate_search(name)
     results.collect do |candidate_attributes|
       self.new(candidate_attributes)
     end
   end
 
   def self.find(fec_id)
-    candidate_attributes = FEC.request("candidate/#{fec_id}?api_key=#{FEC_API_KEY}&sort=-expire_date&sort_hide_null=false&page=1&per_page=20")
+    candidate_attributes = FEC.candidate_find(fec_id)
     self.new(candidate_attributes.first)
   end
 
@@ -63,18 +62,19 @@ class Candidate
   def d3_hash
     {
       name: self.name,
-      children: prepared_committees
+      children: prepared_committees_hash
     }
   end
 
   private
 
-    def prepared_committees
+    def prepared_committees_hash
       self.committees.collect do |committee|
         donors = prepared_donors(committee)
+        money = committee.money
         Hash.new.tap do |hash|
-          hash[:name] = "#{committee.name} | $#{committee.money}"
-          donors.empty? ? hash[:size] = committee.money : hash[:children] = donors
+          hash[:name] = "#{committee.name} | $#{money}"
+          donors.empty? ? hash[:size] = money : hash[:children] = donors
         end
       end
     end
