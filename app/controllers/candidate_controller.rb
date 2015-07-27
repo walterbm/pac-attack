@@ -7,6 +7,11 @@ class CandidateController < ApplicationController
     @candidates = Candidate.search(candidate_params)
     if candidate_params.empty? || @candidates.empty?
       render :search
+    else
+      respond_to do |format|
+        format.html {render :index}
+        format.js {}
+      end
     end
   end
 
