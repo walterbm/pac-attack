@@ -1,10 +1,9 @@
-<div id="home-bg">
-  <div class="col-lg-12">
-    <%= form_tag(candidates_path, method: 'get', class: "form-group") do %>
-      <div class="input-group">
-        <%= search_field_tag(:query, "", placeholder: "who purchased your candidate?", class: "form-control") %>
-        <span class = "input-group-btn"><%= submit_tag("Search", class: "btn btn-default") %></span>
-      </div>
-    <% end %>
-  </div>
+<div class="col-lg-12">
+  <%= form_tag(candidates_path, method: 'get', class: "form-group", remote: true) do %>
+    <div class="input-group">
+      <%= search_field_tag(:query, "", placeholder: "who purchased your candidate?", class: "form-control") %>
+      <span class = "input-group-btn"><%= submit_tag("Search", class: "btn btn-default") %></span>
+    </div>
+  <% end %>
 </div>
+<div id="search-results" class="col-md-12"></div>
