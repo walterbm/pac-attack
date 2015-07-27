@@ -41,6 +41,8 @@ class Candidate
     }
     if party_colors.has_key?(self.party)
       party_colors[self.party]
+    else
+      []
     end
   end
 
