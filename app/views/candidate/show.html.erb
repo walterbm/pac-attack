@@ -1,3 +1,10 @@
+<style>
+  div#d3-graphic{
+    background: <%= @candidate.d3_colors.first %>;
+
+  }
+</style>
+
 <h2><%= @candidate.pretty_print_name %></h2>
 <div id="loading-wrapper">
   <div class="throbber-loader">
@@ -5,6 +12,7 @@
   </div>
 </div>
 <div id="d3-graphic"></div>
+
 <script>
 
 var margin = 20,
@@ -55,7 +63,7 @@ d3.json("<%= @candidate.candidate_id %>/d3.json", function(error, root) {
       .style("background", color(-1))
       .on("click", function() { zoom(root); });
 
-  $("#loading-wrapper").hide();
+  $("#loading-wrapper").slideUp('slow');
 
   zoomTo([root.x, root.y, root.r * 2 + margin]);
 

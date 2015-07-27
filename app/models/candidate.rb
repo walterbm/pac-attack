@@ -34,15 +34,13 @@ class Candidate
 
   def party_color
     party_colors = {
-      "DEM" => "primary",
-      "REP" => "danger",
-      "IND" => "warning",
-      "GRE" => "success"
+      "DEM" => ["democrat-blue","democrat-blue-border"],
+      "REP" => ["republican-red","republican-red-border"],
+      "IND" => ["independent-orange","independent-orange-border"],
+      "GRE" => ["greenparty-green","greenparty-green-border"]
     }
     if party_colors.has_key?(self.party)
       party_colors[self.party]
-    else
-      "default"
     end
   end
 

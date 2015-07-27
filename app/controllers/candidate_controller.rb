@@ -5,11 +5,12 @@ class CandidateController < ApplicationController
 
   def index
     @candidates = Candidate.search(candidate_params)
-    if candidate_params.empty? || @candidates.empty?
-      render :search
-    else
-      respond_to do |format|
-        format.html {render :index}
+    respond_to do |format|
+      if candidate_params.empty? || @candidates.empty?
+        format.html {render :search}
+        format.js {render :error_field}
+      else
+        format.html {}
         format.js {}
       end
     end

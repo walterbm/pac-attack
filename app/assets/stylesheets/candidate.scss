@@ -18,14 +18,57 @@ div.panel-body{
   padding: 10% 20% 0 20%;
 }
 
-div#d3-graphic{
-
-}
 div#loading-wrapper{
   width: 60px;
   display: block;
   margin: 0 auto;
+  padding-bottom: 30px;
 }
 
 #search-results{
+  padding: 0 20%;
+  img{
+    padding: 0;
+    float: left;
+  }
+  ul{
+    list-style-type: none;
+  }
+  .panel-default{
+    border: 2px solid rgb(226, 226, 226);
+  }
+  a{
+    color: #333333;
+  }
+}
+
+.democrat-blue{
+  color: #158cba
+}
+
+.democrat-blue-border{
+  border: 5px solid #158cba;
+}
+
+.republican-red{
+  color: #ff4136;
+}
+
+.republican-red-border{
+  border: 5px solid #ff4136;
+}
+
+.independent-orange{
+  color: #ff851b;
+}
+.independent-orange-border{
+  border: 5px solid #ff851b;
+}
+
+.greenparty-green{
+  color: #28b62c;
+}
+
+.greenparty-green-border{
+  border: 5px solid #28b62c;
 }
