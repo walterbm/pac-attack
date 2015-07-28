@@ -3,9 +3,36 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-html { 
+body { 
   background: url("../assets/whitehouse.jpg") no-repeat center center fixed; 
   background-size: cover;
+}
+
+#logo{
+  width: 40px;
+  height: 40px;
+  float: left;
+  margin: 5px 10px 5px 0;
+}
+
+h2.tagline{
+  color: rgb(231, 231, 231);
+  font-size: 12em;
+  text-align: center;
+  font-family: 'Old Standard TT', serif;
+  font-weight: 700;
+   text-shadow: 0 1px 0 #ccc,
+               0 2px 0 #c9c9c9,
+               0 3px 0 #bbb,
+               0 4px 0 #b9b9b9,
+               0 5px 0 #aaa,
+               0 6px 1px rgba(0,0,0,.1),
+               0 0 5px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 10px rgba(0,0,0,.25),
+               0 10px 10px rgba(0,0,0,.2),
+               0 20px 20px rgba(0,0,0,.15);
 }
 
 div.panel-body{
@@ -15,7 +42,8 @@ div.panel-body{
 }
 
 .form-group{
-  padding: 10% 20% 0 20%;
+  padding: 5% 20% 0 20%;
+  background: transparent;
 }
 
 div#loading-wrapper{

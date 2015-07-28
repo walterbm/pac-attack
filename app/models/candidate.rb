@@ -73,7 +73,7 @@ class Candidate
         donors = prepared_donors(committee)
         money = committee.money
         Hash.new.tap do |hash|
-          hash[:name] = "#{committee.name} | $#{money}"
+          hash[:name] = "#{committee.name}"
           donors.empty? ? hash[:size] = money : hash[:children] = donors
         end
       end

@@ -2,14 +2,14 @@
 <div id="d3-graphic"></div>
 <script>
 
+
 var margin = 20,
     diameter = 700, 
     screenWidth = $("body").width();
 
 var color = d3.scale.linear()
     .domain([-1, 5])
-    .range(["rgb(0,137,255)", "rgb(30,60,130)"])
-    .interpolate(d3.interpolateHcl);
+    .range(["rgb(0,137,255)", "rgb(30,60,130)"]);
 
 var pack = d3.layout.pack()
     .padding(2)
@@ -19,7 +19,7 @@ var pack = d3.layout.pack()
 var svg = d3.select("div#d3-graphic").append("svg")
     .attr("width", screenWidth)
     .attr("height", diameter)
-  .append("g")
+    .append("g")
     .attr("transform", "translate(" + screenWidth / 2 + "," + diameter / 2 + ")");
 
 d3.json("assets/flare.json", function(error, root) {
@@ -31,20 +31,18 @@ d3.json("assets/flare.json", function(error, root) {
 
   var circle = svg.selectAll("circle")
       .data(nodes)
-    .enter().append("circle")
+      .enter().append("circle")
       .attr("class", function(d) { return d.parent ? d.children ? "node" : "node node--leaf" : "node node--root"; })
       .style("fill", function(d) { return d.children ? color(d.depth) : null; })
-      .on("click", function(d) { if (focus !== d) zoom(d), d3.event.stopPropagation(); });
+      .attr("id",function(d) {return d.name; })
+      .on("click", function(d) { 
+        if (focus !== d){
+          zoom(d);
+        } 
+        d3.event.stopPropagation(); 
+      });
 
-  var text = svg.selectAll("text")
-      .data(nodes)
-    .enter().append("text")
-      .attr("class", "label")
-      .style("fill-opacity", function(d) { return d.parent === root ? 1 : 0; })
-      .style("display", function(d) { return d.parent === root ? null : "none"; })
-      .text(function(d) { return d.name; });
-
-  var node = svg.selectAll("circle,text");
+  var node = svg.selectAll("circle");
 
   d3.select("div#d3-graphic")
       .style("background", color(-1))
@@ -56,17 +54,11 @@ d3.json("assets/flare.json", function(error, root) {
     var focus0 = focus; focus = d;
 
     var transition = d3.transition()
-        .duration(d3.event.altKey ? 7500 : 750)
+        .duration(750)
         .tween("zoom", function(d) {
           var i = d3.interpolateZoom(view, [focus.x, focus.y, focus.r * 2 + margin]);
           return function(t) { zoomTo(i(t)); };
         });
-
-    transition.selectAll("text")
-      .filter(function(d) { return d.parent === focus || this.style.display === "inline"; })
-        .style("fill-opacity", function(d) { return d.parent === focus ? 1 : 0; })
-        .each("start", function(d) { if (d.parent === focus) this.style.display = "inline"; })
-        .each("end", function(d) { if (d.parent !== focus) this.style.display = "none"; });
   }
 
   function zoomTo(v) {
@@ -74,6 +66,16 @@ d3.json("assets/flare.json", function(error, root) {
     node.attr("transform", function(d) { return "translate(" + (d.x - v[0]) * k + "," + (d.y - v[1]) * k + ")"; });
     circle.attr("r", function(d) { return d.r * k; });
   }
+
+  $("svg circle").tipsy({ 
+    gravity: 'w', 
+    html: true, 
+    title: function() {
+      var text = this.id;
+      return text;
+    }
+  });
+
 });
 
 d3.select(self.frameElement).style("height", diameter + "px");

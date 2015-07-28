@@ -9,7 +9,7 @@ class FEC
   end
 
   def self.candidate_search(name)
-    self.request("candidates/search?api_key=#{FEC_API_KEY}&office=P&name=#{name}&per_page=10&page=1")
+    self.request("candidates/search?api_key=#{FEC_API_KEY}&office=P&q=#{name}&page=1&per_page=10")
   end
 
   def self.candidate_find(fec_id)
@@ -27,5 +27,5 @@ class FEC
   def self.committee_donors(committee_id)
     self.request("committee/#{committee_id}/schedules/schedule_a/by_contributor?api_key=#{FEC_API_KEY}&sort_hide_null=true&sort=total&per_page=50&page=1")
   end
-  
+
 end
